@@ -40,7 +40,7 @@ sequelize
   // .sync({ force: true })
   .sync()
   .then(result => {
-    return User.findById(1);
+    return User.findByPk(1);
     // console.log(result);
   })
   .then(user => {
@@ -51,7 +51,7 @@ sequelize
   })
   .then(user => {
     // console.log(user);
-    app.listen(3000);
+    app.listen(3003);
   })
   .catch(err => {
     console.log(err);
