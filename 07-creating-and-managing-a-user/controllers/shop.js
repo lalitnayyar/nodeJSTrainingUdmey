@@ -63,7 +63,7 @@ exports.getCart = (req, res, next) => {
         res.render('shop/cart', {
         path: '/cart',
         pageTitle: 'Your Cart',
-        products: products
+        products: products  //pass data to render page i.e ejs
       })
         })
         .catch((err) => console.log(err));
@@ -163,11 +163,11 @@ exports.getOrders = (req, res, next) => {
   req.user
     .getOrders({include: ['products']})
     .then(orders =>{
-      console.log(orders);
+      //console.log(orders);
       res.render('shop/orders', {
         path: '/orders',
         pageTitle: 'Your Orders',
-        orders: orders
+        orders: orders   //pass orders data to ejs page
       })
     })
     .catch((err) => console.log(err));
