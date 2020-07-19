@@ -1,61 +1,56 @@
-const path = require('path')
+const path = require('path');
 
-const express = require('express')
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
-const errorController = require('./controllers/error')
-//const mongoConnect = require('./util/database').mongoConnect;
+const errorController = require('./controllers/error');
 const User = require('./models/user');
 
- 
-const app = express()
+const app = express();
 
-app.set('view engine', 'ejs')
-app.set('views', 'views')
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
-const adminRoutes = require('./routes/admin')
-const shopRoutes = require('./routes/shop')
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById('5f01e26d74c29c4f28219904')
+  User.findById('5bab316ce0a7c75f783cb8a8')
     .then(user => {
       req.user = user;
-      next()
+      next();
     })
-    .catch(err => console.log(err))
-})
+    .catch(err => console.log(err));
+});
 
-  app.use('/admin', adminRoutes)
- app.use(shopRoutes)
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
 
-app.use(errorController.get404)
+app.use(errorController.get404);
 
 mongoose
   .connect(
-    'mongodb+srv://lalitnayyar:3WHw4TgC@cluster0.1hh10.mongodb.net/shop?retryWrites=true&w=majority'
-    //3 WALMART HULU walmart 4 TOKYO golf COFFEE 
+    'mongodb+srv://lalitnayyar:Ed2ySPHzQIs8mcYG@cluster0-ow0zp.mongodb.net/<dbname>?retryWrites=true&w=majority'
   )
-  .then((result) => {
-    User.findOne().then(user=>{
-      if(!user){
-    const user = new User({
-      name: 'Max',
-      email:'max@test.com',
-      cart: {
-        items: []
+  .then(result => {
+    User.findOne().then(user => {
+      if (!user) {
+        const user = new User({
+          name: 'Max',
+          email: 'max@test.com',
+          cart: {
+            items: []
+          }
+        });
+        user.save();
       }
     });
-    user.save();
-      }
-    })
-
     app.listen(3000);
   })
-  .catch((err) => {
+  .catch(err => {
     console.log(err);
   });
-
