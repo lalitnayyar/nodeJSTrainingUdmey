@@ -35,8 +35,11 @@ app.use(errorController.get404);
 
 mongoose
   .connect(
-    'mongodb+srv://lalitnayyar:3WHw4TgC@cluster0.1hh10.mongodb.net/shop?retryWrites=true&w=majoritymongodb+srv://lalitnayyar:Ed2ySPHzQIs8mcYG@cluster0-ow0zp.mongodb.net/shop?retryWrites=true&w=majority'
-  //lalitnayyar:Ed2ySPHzQIs8mcYG
+    'mongodb+srv://lalitnayyar:v67NsbGeenhj4YGB@cluster0.ow0zp.mongodb.net/shop?retryWrites=true&w=majority'
+    //'mongodb+srv://lalitnayyar:v67NsbGeenhj4YGB@cluster0.1hh10.mongodb.net/shop?retryWrites=true&w=majority'
+    //mongodb+srv://lalitnayyar:Ed2ySPHzQIs8mcYG@cluster0-ow0zp.mongodb.net/shop?retryWrites=true&w=majority'
+  //lalitnayyar:v67NsbGeenhj4YGB
+  //account : lalitnayyar@gmail.com
     )
   .then(result => {
     User.findOne().then(user => {
